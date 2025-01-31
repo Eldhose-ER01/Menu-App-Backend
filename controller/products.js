@@ -3,6 +3,8 @@ const Products=require('../model/Menu')
 //***********Adding Menu Items*********/
 const AllproductList=async(req,res)=>{
     try {
+        console.log("hiii");
+        
         console.log(req.body);
         
         const { menuName, menuTitle, menuDesc, price } = req.body; 

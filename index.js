@@ -1,29 +1,30 @@
+const express=require('express')
+const app=express()
+const cors=require('cors')
+const mongoose=require('mongoose')
+
+
+
+app.use(cors());
 require('dotenv').config()
-const express = require('express');
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
 
-const cors = require('cors'); // Add this line
-const mongoose = require('mongoose');
+mongoose.connect(process.env.MonGo_url).then(()=>{
+    console.log("iiiiiii DB CONNECTED");
+})
 
-const app = express();
-const PORT = 3000;
 
-// Connect to MongoDB
-mongoose.connect(process.env.MonGo_url, {
-}).then(() => {
-    console.log(" Database Connected Successfully");
-}).catch((err) => {
-    console.error("Database Connection Error:", err);
-});
 
-const corsOptions = {
-    origin: 'https://menu-app-front-end.vercel.app', // Frontend url
-  };
-// Middleware
-app.use(cors(corsOptions));
-app.use(express.json()); 
-// Routes
-app.use('/', require('./Routes/products'));
-// Start Server
-app.listen(PORT, () => {
-    console.log(` Server Running on http://localhost:${PORT}`);
-});
+app.use(cors({
+    origin:'https://menu-app-front-end.vercel.app/',
+    methods:['GET','POST','PUT','PATCH','DELETE'],//ALLOW SPECIFIC METHOD
+    // credentials:true,//allow cookies and authentications headers
+}))
+
+app.use('/',require('./Routes/products'))
+
+
+app.listen(3000,()=>{
+    console.log("working");
+})
