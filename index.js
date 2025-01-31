@@ -16,7 +16,7 @@ mongoose.connect(process.env.MonGo_url, {
 });
 
 // Middleware
-app.use(cors()); 
+app.use(cors());
 app.use(express.json()); 
 // Routes
 app.use('/', require('./Routes/products'));
