@@ -7,7 +7,6 @@ const AllproductList=async(req,res)=>{
         
         const { menuName, menuTitle, menuDesc, price } = req.body; 
         const newProduct = new Products({ menuName, menuTitle, menuDesc, price });
-        console.log(newProduct,"ffff");
         
         await newProduct.save();
         
@@ -23,7 +22,6 @@ const AllproductList=async(req,res)=>{
 const Menuitems=async(req,res)=>{
     try {
         const findthedata=await Products.find()
-        console.log(findthedata,"fffkdfndjdjdjdjfhdjdjvfjn");
         if(findthedata){
             res.status(200).json({success:true,data:findthedata,message:"find the values"})
         }else{

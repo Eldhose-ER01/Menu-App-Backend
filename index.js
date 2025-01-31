@@ -8,7 +8,7 @@ const app = express();
 const PORT = 3000;
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB, {
+mongoose.connect(process.env.MonGo_url, {
 }).then(() => {
     console.log(" Database Connected Successfully");
 }).catch((err) => {
@@ -22,5 +22,5 @@ app.use(express.json());
 app.use('/', require('./Routes/products'));
 // Start Server
 app.listen(PORT, () => {
-    console.log(`🚀 Server Running on http://localhost:${PORT}`);
+    console.log(` Server Running on http://localhost:${PORT}`);
 });
