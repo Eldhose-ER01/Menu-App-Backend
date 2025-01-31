@@ -17,7 +17,7 @@ mongoose.connect(process.env.MonGo_url).then(()=>{
 
 
 
-app.use(cors())
+
 
 app.use('/',require('./Routes/products'))
 
