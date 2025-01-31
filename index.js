@@ -15,8 +15,11 @@ mongoose.connect(process.env.MonGo_url, {
     console.error("Database Connection Error:", err);
 });
 
+const corsOptions = {
+    origin: 'https://menu-app-front-end.vercel.app', // Frontend url
+  };
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json()); 
 // Routes
 app.use('/', require('./Routes/products'));
